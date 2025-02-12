@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Night, Sayang!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        /* Amplop berbentuk V */
+        .letter-wrapper {
+            width: 400px;
+            height: 350px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .letter-wrapper::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 200px solid #ff80ab; /* Warna amplop */
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 2;
+        }
+
+        .letter-wrapper::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 200px solid #ff80ab; /* Warna amplop */
+            bottom: 0;
+            left: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 2;
+        }
+
+        /* Lingkaran merah muda di tengah amplop */
+        .circle {
+            position: absolute;
+            top: 50%; /* Menyusun secara vertikal di tengah */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Menyusun secara horizontal dan vertikal */
+            width: 120px; /* Memperbesar lingkaran */
+            height: 120px;
+            background-color: #ffffff; /* Warna merah muda */
+            border-radius: 50%; /* Bentuk lingkaran */
+            transition: background-color 0.3s ease;
+            z-index: 5;
+        }
+
+        /* Efek untuk isi surat */
+        .letter-content {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px); /* Surat mulai dari bawah */
+            transition: all 1s ease-in-out; /* Transisi untuk semua perubahan */
+            z-index: 10;
+        }
+
+        /* Animasi ketika surat terbuka */
+        .letter-wrapper.open .letter-content {
+            opacity: 1;
+            transform: translateY(0); /* Surat bergerak ke atas */
+        }
+
+        /* Menyembunyikan amplop setelah surat terbuka */
+        .letter-wrapper.open .letter-wrapper::before,
+        .letter-wrapper.open .letter-wrapper::after {
+            opacity: 0;
+            z-index: -1; /* Menurunkan level z-index amplop ke belakang */
+        }
+
+        /* Menghilangkan lingkaran setelah surat terbuka */
+        .letter-wrapper.open .circle {
+            opacity: 0;
+            z-index: -1; /* Menurunkan level z-index lingkaran */
+        }
+
+        .letter-content h2 {
+            font-size: 2rem;
+            color: #ff4d6d;
+            margin-bottom: 15px;
+        }
+
+        .letter-content p {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="letter-wrapper" onclick="openLetter()">
+        <!-- Lingkaran merah muda di tengah amplop -->
+        <div class="circle"></div>
+
+        <!-- Isi Surat -->
+        <div class="letter-content" id="letterContent">
+            <h2>Good Night Cintakuuu!</h2>
+            <p>Rest well and sleep tight. Hope you have sweet dreams tonight. See you tomorrow. I love you so much 💜🤍</p>
+        </div>
+    </div>
+
+    <script>
+        function openLetter() {
+            // Menambahkan kelas 'open' untuk memicu animasi
+            document.querySelector('.letter-wrapper').classList.add('open');
+        }
+    </script>
+
+</body>
+</html>
